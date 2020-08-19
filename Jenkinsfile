@@ -1,5 +1,5 @@
 pipeline {
-      agent any
+      agent none
       stages{
          stage('Build artifact'){
              agent {
@@ -12,23 +12,7 @@ pipeline {
                 sh 'mvn clean install'
                 sh 'mkdir demo'
               }
-         }
-         stage('Build docker image'){
-             steps{
-                sh 'echo "build docker image"'
-                sh 'ls -ll'
-              }
-         }
-         stage('push docker image'){
-             steps{
-                sh 'echo "push docker image"'
-              }
-         }
-         stage('Deploy on kubernetes'){
-             steps{
-                sh 'echo "deploy on k8"'
-              }
-         }
+         }        
 
       }
 
