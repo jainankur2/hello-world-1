@@ -3,7 +3,7 @@ pipeline {
       stages{
          stage('Build artifact'){
              steps{
-                sh 'echo "build artifact"'
+                sh 'mvn clean install'
               }
          }
          stage('Build docker image'){
