@@ -32,3 +32,6 @@ pipeline {
       }
 
 }
+def get_environments(all_environments, job_name) {
+    return all_environments.keySet().findAll{label -> job_name.contains(label.split(' ')[0].toLowerCase())}.join('\n')
+}
