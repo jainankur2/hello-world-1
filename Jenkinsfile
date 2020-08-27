@@ -14,9 +14,9 @@ pipeline {
       agent any
       parameters {
         choice(
-        name: 'param1',
-        choices: 'aaa\nbbb\nccc',
-        description: 'lkdsjflksjlsjdf'
+        name: 'ENVIRONMENT',
+        choices: allowed_environments,
+        description: 'The environment.'
     )
         password(name: 'AWS_CREDENTIALS', defaultValue: '', description: 'Enter AWS credentials. e.g. export AWS_ACCESS_KEY_ID=[...] export AWS_SECRET_ACCESS_KEY=[...] export AWS_SESSION_TOKEN=[...]')
     }
