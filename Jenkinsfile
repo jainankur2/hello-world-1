@@ -14,7 +14,6 @@ pipeline {
       agent any
       parameters {
         choice(
-        defaultValue: 'bbb',
         name: 'param1',
         choices: 'aaa\nbbb\nccc',
         description: 'lkdsjflksjlsjdf'
