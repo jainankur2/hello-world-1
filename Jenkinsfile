@@ -13,7 +13,7 @@ def allowed_environments = get_environments(ENVIRONMENTS, env.JOB_NAME)
 pipeline {
       agent any
       parameters {
-        choice(name: 'ENVIRONMENT', choices: DEV/nQA/nProd, description: 'The environment.')
+        choice(name: 'ENVIRONMENT', defaultValue: 'DEV',choices: 'DEV/nQA/nProd', description: 'The environment.')
         password(name: 'AWS_CREDENTIALS', defaultValue: '', description: 'Enter AWS credentials. e.g. export AWS_ACCESS_KEY_ID=[...] export AWS_SECRET_ACCESS_KEY=[...] export AWS_SESSION_TOKEN=[...]')
     }
 
