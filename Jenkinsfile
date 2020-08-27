@@ -13,7 +13,6 @@ def allowed_environments = get_environments(ENVIRONMENTS, env.JOB_NAME)
 pipeline {
       agent any
       parameters {
-#        choice(name: 'ENVIRONMENT', defaultValue: 'DEV',choices: 'DEV/nQA/nProd', description: 'The environment.')
         choice(
         defaultValue: 'bbb',
         name: 'param1',
