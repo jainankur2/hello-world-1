@@ -1,0 +1,10 @@
+ORIGIN_URL="https://github.com/jainankur2/hello-world-1.git"
+REPO1_URL="https://github.com/jainankur2/hello-world-3.git"
+REPO="hello-world-1.git"
+rm -rf $REPO
+git clone --mirror $ORIGIN_URL
+cd $REPO
+git remote add --mirror=fetch secondary $REPO1_URL
+git fetch origin
+git push secondary --all
+rm -rf $REPO
