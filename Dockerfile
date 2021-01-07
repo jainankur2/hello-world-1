@@ -1,6 +1,4 @@
-# Pull base image 
-From tomcat:8-jre8 
-
-# Maintainer 
-MAINTAINER "valaxytech@gmail.com" 
-COPY webapp/target/webapp.war /usr/local/tomcat/webapps
+From tomcat:8.0.51-jre8-alpine
+RUN rm -rf /usr/local/tomcat/webapps/*
+COPY webapp/target/webapp.war /usr/local/tomcat/webapps/ROOT.war
+CMD ["catalina.sh","run"]
