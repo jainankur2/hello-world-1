@@ -8,11 +8,13 @@ pipeline {
              }
          stage('Build and Push Image'){
              steps{
+                script{
                      docker.build("docker build -t jainankur2/loylogic:${BUILD_NUMBER}",".")
                      docker.withRegistry('', 'registry-cred')
                     {
                         docker.image("jainankur2/loylogic:${BUILD_NUMBER}").push()
                     }
+              }
               }
          }
 
