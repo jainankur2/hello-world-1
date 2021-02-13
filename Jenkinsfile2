@@ -16,7 +16,7 @@ pipeline {
         stage('Publish Image'){
             steps{
                withCredentials([string(credentialsId: 'dockerhub-pwd', variable: 'dockerhubPwd')]) {
-                  sh "docker login -u jainankur2 -p ${dockerhubPwd}"
+                  sh "docker login --username jainankur2 --password ${dockerhubPwd}"
                 }
                sh 'docker push jainankur2/loylogic:${BUILD_NUMBER}'
            }
