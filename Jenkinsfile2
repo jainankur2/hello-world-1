@@ -3,7 +3,7 @@ pipeline {
       stages{
          stage('Build artifact'){
             steps{
-              sh 'echo "build"'
+              sh label: 'compile-hello-world', script: 'mvn -B -f pom.xml clean install'
             }
              }
          stage('deploy'){
@@ -15,3 +15,5 @@ pipeline {
       }
 
 }
+
+
