@@ -19,7 +19,12 @@ pipeline {
                   sh 'docker login --username jainankur2 --password ${dockerhubPwd}'
                 }
                sh 'docker push jainankur2/loylogic:${BUILD_NUMBER}'
-           }
+            }
+            post{
+               success{
+                  sh 'docker rmi -f jainankur2/loylogic:${BUILD_NUMBER}'
+               }
+            }
         }
     }
 }
