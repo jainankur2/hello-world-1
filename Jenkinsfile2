@@ -6,9 +6,9 @@ pipeline {
               sh label: 'compile-hello-world', script: 'mvn -B -f pom.xml clean install'
             }
              }
-         stage('deploy'){
+         stage('Build Image'){
              steps{
-                sh 'echo "deploy"'
+                docker.build("loylogic-hello-world:${BUILD_NUMBER}",".")
               }
          }        
 
