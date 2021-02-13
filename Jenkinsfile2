@@ -31,7 +31,7 @@ pipeline {
             steps{
                sshagent(credentials : ['ansible-pem']) {
                   sh "echo pwd"
-                  sh 'ssh -t -t ubuntu@172.20.11.52 -o StrictHostKeyChecking=no "echo hello"'
+                  sh 'ssh -t -t ubuntu@172.20.11.52 -o StrictHostKeyChecking=no "ansible-playbook /home/ubunt/deploy.yml -i /home/ubuntu/inventory -u ubuntu --private-key=/home/ubuntu/keys.pem"'
                 }
             }
         }
