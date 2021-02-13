@@ -1,26 +1,25 @@
 pipeline {
       agent any
-      stages{
-         stage('Build artifact'){
+    stages{
+        stage('Build artifact'){
             steps{
-              sh label: 'compile-hello-world', script: 'mvn -B -f pom.xml clean install'
+               sh label: 'compile-hello-world', script: 'mvn -B -f pom.xml clean install'
             }
-             }
+        }
           
-          stage('Build Image'){
-             steps{
+        stage('Build Image'){
+            steps{
                sh 'docker build -t jainankur2/loylogic:${BUILD_NUMBER} .'
             }
-           }
+        }
            
-          stage('Publish Image'){
-             steps{
-               withDockerRegistry([ credentialsId: "registry-cred", url: "" ]) {
-                   sh 'docker push jainankur2/loylogic:${BUILD_NUMBER}'
+        stage('Publish Image'){
+            steps{
+               withCredentials([string(credentialsId: 'dockerhub-pwd', variable: 'dockerhubPwd')]) {
+                  sh "docker login -u jainankur2 -p ${dockerhubPwd}"
                 }
+               sh 'docker push jainankur2/loylogic:${BUILD_NUMBER}'
            }
-      }
-      }
-      }
-
-
+        }
+    }
+}
