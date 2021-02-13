@@ -26,5 +26,15 @@ pipeline {
                }
             }
         }
+
+        stage('Deploy Image with Ansible'){
+            steps{
+               sshagent(credentials : ['ansible-pem']) {
+                  sh "echo pwd"
+                  sh 'ssh -t -t ubuntu@172.20.11.52 -o StrictHostKeyChecking=no "echo hello"'
+                }
+            }
+        }
+
     }
 }
