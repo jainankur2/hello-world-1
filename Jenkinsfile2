@@ -8,12 +8,10 @@ pipeline {
              }
          stage('Build Image'){
              steps{
-                docker.build("loylogic-hello-world:${BUILD_NUMBER}",".")
+                sh label: 'build-docker-image', script: 'docker build -t loylogic-hello-world:${BUILD_NUMBER} .'
               }
          }        
 
       }
-
-}
 
 
