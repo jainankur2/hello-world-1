@@ -6,14 +6,13 @@ pipeline {
               sh label: 'compile-hello-world', script: 'mvn -B -f pom.xml clean install'
             }
              }
-         stage('Build Image'){
+         stage('Build and Push Image'){
              steps{
-                sh label: 'build-docker-image', script: 'docker build -t jainankur2/loylogic:${BUILD_NUMBER} .'
-              }
-         }
-         stage('Push Image'){
-             steps{
-                sh label: 'Push-docker-image', script: 'docker push jainankur2/loylogic:${BUILD_NUMBER}'
+                     docker.build("docker build -t jainankur2/loylogic:${BUILD_NUMBER}",".")
+                     docker.withRegistry('', 'registry-cred')
+                    {
+                        docker.image("jainankur2/loylogic:${BUILD_NUMBER}").push()
+                    }
               }
          }
 
