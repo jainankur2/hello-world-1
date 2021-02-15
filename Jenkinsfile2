@@ -31,6 +31,7 @@ pipeline {
             steps{
                sshagent(credentials : ['ansible-pem']) {
                      sh 'scp deploy.yml ubuntu@172.20.11.52:/home/ubuntu/'
+                     sh 'scp inventory ubuntu@172.20.11.52:/home/ubuntu/'
                }
             }
         }
