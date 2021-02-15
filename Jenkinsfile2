@@ -30,8 +30,8 @@ pipeline {
         stage('Copy files on Ansible server'){
             steps{
                sshagent(credentials : ['ansible-pem']) {
-                     sh 'scp deploy.yml ubuntu@172.20.11.252:/home/ubuntu/'
-                     sh 'scp inventory ubuntu@172.20.11.252:/home/ubuntu/'
+                     sh 'scp deploy.yml -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null ubuntu@172.20.11.252:/home/ubuntu/'
+                     sh 'scp inventory -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null ubuntu@172.20.11.252:/home/ubuntu/'
                }
             }
         }
